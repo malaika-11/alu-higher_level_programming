@@ -1,3 +1,2 @@
-#!/usr/bin/env bash
-# 1-run_inline: Runs Python code stored in $PYCODE
+#!/bin/bash
 python3 -c "$PYCODE"
