@@ -12,7 +12,3 @@ def fizzbuzz():
         else:
             print("{}".format(i), end=" ")
     print()
-
-# Run the program
-if __name__ == "__main__":
-    fizzbuzz()
