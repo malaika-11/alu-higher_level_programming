@@ -1,43 +1,19 @@
-7. Integer validator
+# 7-base_geometry tests
 
-Write a class BaseGeometry.
+# Test 1: Check instantiation
+python3 -c "from 7-base_geometry import BaseGeometry; bg = BaseGeometry()"
 
-Public instance method:
-- def area(self): raises Exception with message "area() is not implemented"
+# Test 2: Check area() raises Exception
+python3 -c "from 7-base_geometry import BaseGeometry; bg = BaseGeometry(); bg.area()" 2>&1 | grep "area() is not implemented"
 
-Public instance method:
-- def integer_validator(self, name, value):
-    validates value:
-    - if value is not an integer: raise TypeError with message "<name> must be an integer"
-    - if value <= 0: raise ValueError with message "<name> must be greater than 0"
+# Test 3: Check integer_validator() with valid integers
+python3 -c "from 7-base_geometry import BaseGeometry; bg = BaseGeometry(); bg.integer_validator('my_int', 12); bg.integer_validator('width', 89)"
 
-Example:
+# Test 4: Check integer_validator() raises TypeError for non-integer
+python3 -c "from 7-base_geometry import BaseGeometry; bg = BaseGeometry(); bg.integer_validator('name', 'John')" 2>&1 | grep "TypeError: name must be an integer"
 
-$ cat 7-main.py
-#!/usr/bin/python3
-BaseGeometry = __import__('7-base_geometry').BaseGeometry
+# Test 5: Check integer_validator() raises ValueError for 0
+python3 -c "from 7-base_geometry import BaseGeometry; bg = BaseGeometry(); bg.integer_validator('age', 0)" 2>&1 | grep "ValueError: age must be greater than 0"
 
-bg = BaseGeometry()
-
-bg.integer_validator("my_int", 12)
-bg.integer_validator("width", 89)
-
-try:
-    bg.integer_validator("name", "John")
-except Exception as e:
-    print("[{}] {}".format(e.__class__.__name__, e))
-
-try:
-    bg.integer_validator("age", 0)
-except Exception as e:
-    print("[{}] {}".format(e.__class__.__name__, e))
-
-try:
-    bg.integer_validator("distance", -4)
-except Exception as e:
-    print("[{}] {}".format(e.__class__.__name__, e))
-
-$ ./7-main.py
-[TypeError] name must be an integer
-[ValueError] age must be greater than 0
-[ValueError] distance must be greater than 0
+# Test 6: Check integer_validator() raises ValueError for negative
+python3 -c "from 7-base_geometry import BaseGeometry; bg = BaseGeometry(); bg.integer_validator('distance', -4)" 2>&1 | grep "ValueError: distance must be greater than 0"
