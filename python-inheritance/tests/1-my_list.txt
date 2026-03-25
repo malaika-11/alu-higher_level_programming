@@ -1,10 +1,10 @@
 The MyList class
 ================
 
-Import the class:
+Import MyList:
 >>> MyList = __import__('1-my_list').MyList
 
-Check that append works correctly:
+Check that append works and the list prints correctly:
 >>> my_list = MyList()
 >>> my_list.append(1)
 >>> my_list.append(4)
@@ -14,18 +14,22 @@ Check that append works correctly:
 >>> print(my_list)
 [1, 4, 2, 3, 5]
 
-Verify that print_sorted() works after appending:
+Check that print_sorted() works:
 >>> my_list.print_sorted()
 [1, 2, 3, 4, 5]
 
-Verify the original list is still the same:
+Check that the original list is still unsorted:
 >>> print(my_list)
 [1, 4, 2, 3, 5]
 
-Check appending negative numbers:
->>> my_list.append(-5)
->>> print(my_list)
-[1, 4, 2, 3, 5, -5]
+Check with an empty list:
+>>> my_list = MyList()
 >>> my_list.print_sorted()
-[-5, 1, 2, 3, 4, 5]
+[]
+
+Check with negative numbers:
+>>> my_list = MyList([10, -5, 0])
+>>> my_list.append(-100)
+>>> my_list.print_sorted()
+[-100, -5, 0, 10]
 
