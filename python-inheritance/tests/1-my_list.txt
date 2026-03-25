@@ -1,30 +1,31 @@
-0. MyList
+===========================
+Tests for MyList Class
+===========================
 
-Write a class MyList that inherits from list.
+First, import MyList from the module:
+>>> MyList = __import__('1-my_list').MyList
 
-Public instance method: def print_sorted(self):
-    - prints the list, but sorted (ascending sort)
-    - assumes all elements are integers
-    - does not modify the original list
-
-Example:
-
-$ cat 1-main.py
-#!/usr/bin/python3
-MyList = __import__('1-my_list').MyList
-
-my_list = MyList()
-my_list.append(1)
-my_list.append(4)
-my_list.append(2)
-my_list.append(3)
-my_list.append(5)
-
-print(my_list)
-my_list.print_sorted()
-print(my_list)
-
-$ ./1-main.py
+Check basic sorting:
+>>> my_list = MyList([1, 4, 2, 3, 5])
+>>> print(my_list)
 [1, 4, 2, 3, 5]
+>>> my_list.print_sorted()
 [1, 2, 3, 4, 5]
+>>> print(my_list)
 [1, 4, 2, 3, 5]
+
+Check with an empty list:
+>>> my_list = MyList()
+>>> my_list.print_sorted()
+[]
+
+Check with negative numbers:
+>>> my_list = MyList([10, -5, 0, 3])
+>>> my_list.print_sorted()
+[-5, 0, 3, 10]
+
+Check with duplicate values:
+>>> my_list = MyList([1, 2, 2, 1])
+>>> my_list.print_sorted()
+[1, 1, 2, 2]
+
