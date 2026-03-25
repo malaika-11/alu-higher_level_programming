@@ -1,19 +1,35 @@
-# 7-base_geometry tests
+====================================
+Tests for BaseGeometry Class (Task 7)
+====================================
 
-# Test 1: Check instantiation
-python3 -c "from 7-base_geometry import BaseGeometry; bg = BaseGeometry()"
+Import the class:
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> bg = BaseGeometry()
 
-# Test 2: Check area() raises Exception
-python3 -c "from 7-base_geometry import BaseGeometry; bg = BaseGeometry(); bg.area()" 2>&1 | grep "area() is not implemented"
+Test integer_validator with valid inputs (should not raise anything):
+>>> bg.integer_validator("my_int", 12)
+>>> bg.integer_validator("width", 89)
 
-# Test 3: Check integer_validator() with valid integers
-python3 -c "from 7-base_geometry import BaseGeometry; bg = BaseGeometry(); bg.integer_validator('my_int', 12); bg.integer_validator('width', 89)"
+Test integer_validator with non-integer (TypeError):
+>>> bg.integer_validator("name", "John")
+Traceback (most recent call last):
+TypeError: name must be an integer
 
-# Test 4: Check integer_validator() raises TypeError for non-integer
-python3 -c "from 7-base_geometry import BaseGeometry; bg = BaseGeometry(); bg.integer_validator('name', 'John')" 2>&1 | grep "TypeError: name must be an integer"
+>>> bg.integer_validator("list", [1, 2, 3])
+Traceback (most recent call last):
+TypeError: list must be an integer
 
-# Test 5: Check integer_validator() raises ValueError for 0
-python3 -c "from 7-base_geometry import BaseGeometry; bg = BaseGeometry(); bg.integer_validator('age', 0)" 2>&1 | grep "ValueError: age must be greater than 0"
+Test integer_validator with value <= 0 (ValueError):
+>>> bg.integer_validator("age", 0)
+Traceback (most recent call last):
+ValueError: age must be greater than 0
 
-# Test 6: Check integer_validator() raises ValueError for negative
-python3 -c "from 7-base_geometry import BaseGeometry; bg = BaseGeometry(); bg.integer_validator('distance', -4)" 2>&1 | grep "ValueError: distance must be greater than 0"
+>>> bg.integer_validator("distance", -4)
+Traceback (most recent call last):
+ValueError: distance must be greater than 0
+
+Test area() method:
+>>> bg.area()
+Traceback (most recent call last):
+Exception: area() is not implemented
+
