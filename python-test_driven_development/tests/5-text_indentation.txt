@@ -1,0 +1,22 @@
+Text indentation function tests.
+
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+>>> text_indentation("Hello. How are you? Fine:")
+Hello.
+<BLANKLINE>
+How are you?
+<BLANKLINE>
+Fine:
+<BLANKLINE>
+>>> text_indentation("  Holberton School.  Python? Yes:  ")
+Holberton School.
+<BLANKLINE>
+Python?
+<BLANKLINE>
+Yes:
+<BLANKLINE>
+>>> text_indentation(12)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
